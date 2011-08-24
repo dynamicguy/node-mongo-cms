@@ -61,3 +61,13 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+## Contributing
+
+  * Fork it.
+  * Create a branch (git checkout -b my_node-blog)
+  * Commit your changes (git commit -am "Added Snarkdown")
+  * Push to the branch (git push origin my_node-blog)
+  * Create an Issue with a link to your branch
+  * Enjoy a refreshing Diet Coke and wait
