@@ -1,9 +1,13 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.4.6"
-    , "jade": ">= 0.0.1"
-  }
+	"name": "nodejs-mongodb-cms",
+	"description": "NodeJS MongoDB CMS",
+	"version": "0.0.1",
+	"author": "Nurul Ferdous <nurul@ferdo.us> (https://github.com/dynamicguy/)",
+	"private": true,
+	"dependencies": {
+		"express": "2.4.x",
+		"jade": ">= 0.13.x",
+		"mongoose": ">=1.7.x",
+		"mongoose-auth": ">=0.0.11"
+	}
 }

@@ -1,0 +1,39 @@
+div.topbar-wrapper
+	div.topbar
+		div.topbar-inner
+			div.container
+				h3
+					a(href='/') Project name
+				ul(class='nav')
+					li.active
+						a(href='/') Home
+					li
+						a(href='/') About
+					li
+						a(href='/') Contact
+					li.dropdown
+						a.dropdown-toggle(href="#") dropdown
+						ul.dropdown-menu
+							- if (!everyauth.loggedIn)
+								li 
+									a(href='/login') login
+							- else
+								li
+									a(href='/profile') #{everyauth.user.login}
+								li
+									a(href='/logout') logout
+				form(method='post', action='')
+					input(type="text", name="q", placeholder='Search')
+				ul.secondary-nav.nav
+					li.dropdown
+						- if (!everyauth.loggedIn)
+							a(href="/login") login
+						- else
+							a.dropdown-toggle(href='/profile') #{everyauth.user.login}
+							ul.dropdown-menu
+								li
+									a(href='/profile') settings
+								li
+									a(href='/logout') logout
+								li
+									a(href='/help') help

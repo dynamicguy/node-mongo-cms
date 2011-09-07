@@ -1,2 +1,47 @@
-h1= title
-p Welcome to #{title}
+div.hero-unit
+	h1= title
+	p Welcome to #{title}
+	p 
+		a(href='#', class='btn primary large') Learn more »
+		- if (!everyauth.loggedIn)
+			h2 Not Authenticated
+		- else
+			h2 Authenticated
+			#user-id Logged in with `user.id` #{user.id} - aka `everyauth.user.email` #{everyauth.user.login}
+			- if (everyauth.facebook)
+				h3 Facebook User Data
+				p= JSON.stringify(everyauth.facebook.user)
+			- if (everyauth.twitter)
+				h3 Twitter User Data
+				p= JSON.stringify(everyauth.twitter.user)
+			- if (everyauth.github)
+				h3 GitHub User Data
+				p= JSON.stringify(everyauth.github.user)
+			- if (everyauth.instagram)
+				h3 Instagram User Data
+				p= JSON.stringify(everyauth.instagram.user)
+			h3
+				a(href='/logout') Logout
+		
+		
+div.row
+	div.span6.columns
+		include includes/sidebar
+	div.span10.columns
+		h2.heading content
+		table.zebra-striped#sortTableExample
+			thead
+				tr
+					th.blue #
+					th.blue first name
+					th.blue last name
+				tr
+			tbody
+				tr
+					td example1
+					td example1
+					td example1
+				tr
+					td example2
+					td example2
+					td example2

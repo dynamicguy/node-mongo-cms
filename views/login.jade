@@ -1,0 +1,31 @@
+div.hero-unit
+	h1= "title"
+	p Welcome to
+	p 
+		a(href='#', class='btn primary large') Learn more »
+
+div.row
+	div.span6.columns
+		include includes/sidebar
+	div.span10.columns
+		- if ('undefined' !== typeof errors && errors.length)
+			div.alert-message.error
+				a.close(href='#') x
+				p
+					- each error in errors
+						#{error}
+		form(action='/login', method='POST')
+			fieldset
+				legend login 
+				.clearfix
+					label.xlInput(for=everyauth.password.loginFormFieldName) Login
+					.input
+						input(type='text', name=everyauth.password.loginFormFieldName, value=login, class='xlarge')
+				.clearfix
+					label.xlInput(for=everyauth.password.passwordFormFieldName) Password
+					.input
+						input(type='password', name=everyauth.password.passwordFormFieldName, class='xlarge')
+				.clearfix
+					label.xlInput(for=' ')
+					.input
+						input.btn.primary(type='submit', value='Login')
