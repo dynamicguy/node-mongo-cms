@@ -1,75 +1,9 @@
 var express = require('express');
-
-var mongoose = require('mongoose')
-     , Schema = mongoose.Schema
-     , mongooseAuth = require('mongoose-auth');
-
-var UserSchema = new Schema({})
-     , User;
-
-var conf = require('./conf');
-
-UserSchema.plugin(mongooseAuth, {
-	everymodule: {
-	  everyauth: {
-	      User: function () {
-	        return User;
-	      }
-	  }
-	}
-	, facebook: {
-	  everyauth: {
-	      myHostname: 'http://localhost:3000'
-	    , appId: conf.fb.appId
-	    , appSecret: conf.fb.appSecret
-	    , redirectPath: '/'
-	  }
-	}
-	, twitter: {
-	  everyauth: {
-	      myHostname: 'http://localhost:3000'
-	    , consumerKey: conf.twit.consumerKey
-	    , consumerSecret: conf.twit.consumerSecret
-	    , redirectPath: '/'
-	  }
-	}
-	, password: {
-	    everyauth: {
-	        getLoginPath: '/login'
-	      , postLoginPath: '/login'
-	      , loginView: 'login.jade'
-	      , getRegisterPath: '/register'
-	      , postRegisterPath: '/register'
-	      , registerView: 'register.jade'
-	      , loginSuccessRedirect: '/'
-	      , registerSuccessRedirect: '/'
-		  , loginWith: 'login'
-	    }
-	}
-	, github: {
-	  everyauth: {
-	      myHostname: 'http://localhost:3000'
-	    , appId: conf.github.appId
-	    , appSecret: conf.github.appSecret
-	    , redirectPath: '/'
-	  }
-	}
-	, instagram: {
-	  everyauth: {
-	      myHostname: 'http://localhost:3000'
-	    , appId: conf.instagram.clientId
-	    , appSecret: conf.instagram.clientSecret
-	    , redirectPath: '/'
-	  }
-	}
-});
-
-mongoose.model('User', UserSchema);
-mongoose.connect('mongodb://localhost/example');
-User = mongoose.model('User');
-
 var app = express.createServer();
+
+var models = require('./models');
 mongooseAuth.helpExpress(app);
+
 
 // Configuration
 app.configure(function(){
@@ -80,7 +14,7 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'esoognom'}));
-  app.use(mongooseAuth.middleware());
+  app.use(models.mongooseAuth.middleware());
 });
 
 app.configure('development', function(){
@@ -94,6 +28,12 @@ app.configure('production', function(){
 // Routes
 app.get('/', function(req, res){
   res.render('index', {
+    title: 'NodeJS MongoDB CMS'
+  });
+});
+
+app.get('/pages', function(req, res){
+  res.render('pages', {
     title: 'NodeJS MongoDB CMS'
   });
 });

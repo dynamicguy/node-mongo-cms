@@ -1,23 +1,39 @@
-h2 Register
-- if ('undefined' !== typeof errors && errors.length)
-  ul#errors
-    - each error in errors
-      li.error= error
-form(action='/register', method='POST')
-  #login
-    label(for=everyauth.password.loginFormFieldName) Login
-    input(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName])
-  #password
-    label(for=everyauth.password.passwordFormFieldName) Password
-    input(type='password', name=everyauth.password.passwordFormFieldName)
-  #phone
-    label(for='phone') Phone
-    input(type='text', name='phone')
-  #first-name
-    label(for='name.first') First Name
-    input(type='text', name='name.first')
-  #last-name
-    label(for='name.last') Last Name
-    input(type='text', name='name.last')
-  #submit
-    input(type='submit') Register
+div.hero-unit
+	h2 Welcome to
+div.row
+	div.span6.columns
+		include includes/sidebar
+	div.span10.columns
+		- if ('undefined' !== typeof errors && errors.length)
+			div.alert-message.error
+				a.close(href='#') x
+				p
+				- each error in errors
+					#{error}
+		form(action='/register', method='POST')
+			fieldset
+				legend register 			
+			.clearfix
+				label(for=everyauth.password.loginFormFieldName) Login
+				.input
+					input(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName])
+			.clearfix
+				label(for=everyauth.password.passwordFormFieldName) Password
+				.input
+					input(type='password', name=everyauth.password.passwordFormFieldName)
+			.clearfix
+				label(for='phone') Phone
+				.input
+					input(type='text', name='phone')
+			.clearfix
+				label(for='name.first') First Name
+				.input
+					input(type='text', name='name.first')
+			.clearfix
+				label(for='name.last') Last Name
+				.input
+					input(type='text', name='name.last')
+			.clearfix
+				label.xlInput(for=' ')
+				.input
+					input.btn.primary(type='submit') Register
