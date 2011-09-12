@@ -2,10 +2,10 @@ var mongoose = require('mongoose')
      , Schema = mongoose.Schema
      , mongooseAuth = require('mongoose-auth');
 
+var conf = require('./conf');
+
 var UserSchema = new Schema({})
      , User;
-
-var conf = require('./conf');
 
 UserSchema.plugin(mongooseAuth, {
 	everymodule: {
@@ -63,5 +63,6 @@ UserSchema.plugin(mongooseAuth, {
 });
 
 mongoose.model('User', UserSchema);
-mongoose.connect('mongodb://localhost/example');
+mongoose.connect('mongodb://localhost/nms');
 User = mongoose.model('User');
+exports.User = User

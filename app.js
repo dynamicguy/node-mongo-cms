@@ -1,9 +1,9 @@
 var express = require('express');
 var app = express.createServer();
 
-var models = require('./models');
+var mongooseAuth = require('mongoose-auth');
+var User = new (require('./models')).User;
 mongooseAuth.helpExpress(app);
-
 
 // Configuration
 app.configure(function(){
@@ -14,7 +14,7 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'esoognom'}));
-  app.use(models.mongooseAuth.middleware());
+  app.use(mongooseAuth.middleware());
 });
 
 app.configure('development', function(){
@@ -32,8 +32,14 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/pages', function(req, res){
-  res.render('pages', {
+app.get('/page', function(req, res){
+  res.render('page/index', {
+    title: 'NodeJS MongoDB CMS'
+  });
+});
+
+app.get('/page/create', function(req, res){
+  res.render('page/create', {
     title: 'NodeJS MongoDB CMS'
   });
 });
