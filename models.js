@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
      , Schema = mongoose.Schema
      , mongooseAuth = require('mongoose-auth');
 
+<<<<<<< HEAD
 mongoose.connect('mongodb://localhost/nms');
 
 
@@ -10,6 +11,13 @@ var conf = require('./conf');
 var UserSchema = new Schema({})
      , User;
 
+=======
+var conf = require('./conf');
+
+var UserSchema = new Schema({})
+     , User;
+
+>>>>>>> f184fad66262f63a524f6da80f1ec30ec2d1e4e0
 UserSchema.plugin(mongooseAuth, {
 	everymodule: {
 	  everyauth: {
@@ -66,6 +74,7 @@ UserSchema.plugin(mongooseAuth, {
 });
 
 mongoose.model('User', UserSchema);
+<<<<<<< HEAD
 User = mongoose.model('User');
 exports.User = User;
 
@@ -94,3 +103,8 @@ PageModel.prototype.save = function (params, callback) {
 	});
 };
 exports.PageModel = PageModel;
+=======
+mongoose.connect('mongodb://localhost/nms');
+User = mongoose.model('User');
+exports.User = User
+>>>>>>> f184fad66262f63a524f6da80f1ec30ec2d1e4e0
