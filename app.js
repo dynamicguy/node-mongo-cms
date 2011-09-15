@@ -1,9 +1,11 @@
 var express = require('express');
+
+var mongooseAuth = require('mongoose-auth');
+var User = new (require('./models').User);
+var pageModel = new (require('./models').PageModel);
+
 var app = express.createServer();
-
-var models = require('./models');
 mongooseAuth.helpExpress(app);
-
 
 // Configuration
 app.configure(function(){
@@ -14,7 +16,7 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'esoognom'}));
-  app.use(models.mongooseAuth.middleware());
+  app.use(mongooseAuth.middleware());
 });
 
 app.configure('development', function(){
@@ -28,14 +30,33 @@ app.configure('production', function(){
 // Routes
 app.get('/', function(req, res){
   res.render('index', {
-    title: 'NodeJS MongoDB CMS'
+	title: 'Home'
   });
 });
-
-app.get('/pages', function(req, res){
-  res.render('pages', {
-    title: 'NodeJS MongoDB CMS'
+app.get('/page', function(req, res){
+  res.render('page', {
+	  title: 'Page list'
   });
+});
+app.get('/page/create', function(req, res){
+  res.render('page/create', {
+	  title: 'create a new page'
+  });
+});
+app.post('/page/create', function(req, res) {
+	pageModel.save({
+		title: req.param('title'),
+		content: req.param('content')
+	}, function(err, docs) {
+		if(!err){
+			res.redirect('/page');
+		} else {
+			res.render('page/create', {
+				title: 'create a new page',
+				errors: err
+			});			
+		}
+	});
 });
 
 app.listen(3000);
