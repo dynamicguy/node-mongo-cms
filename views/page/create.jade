@@ -1,0 +1,25 @@
+div.row
+	div.span16.columns
+		- if ('undefined' !== typeof errors)
+			div.alert-message.error
+				a.close(href='#') x
+				p
+					- each error in errors
+						#{error}
+		form.form-stacked(action='/page/create', method='POST')
+			fieldset
+				legend create a new page 
+				.clearfix
+					label.xlInput(for='title') Title
+					.input
+						input(type='text', name='title', class='xxlarge')
+				.clearfix
+					label.xlInput(for='content') Content
+					.input
+						textarea(name='content', class='xxlarge')
+				.clearfix
+					label.xlInput(for='submit')
+					.input
+						input.btn.primary(type='submit', value='Save')
+						&nbsp;
+						input.btn(type='submit', value='Cancel')
