@@ -1,24 +1,15 @@
 var express = require('express');
 
 var mongooseAuth = require('mongoose-auth');
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> dev
 var User = new (require('./models').User);
 var pageModel = new (require('./models').PageModel);
 
 var app = express.createServer();
 mongooseAuth.helpExpress(app);
 
-<<<<<<< HEAD
-=======
 var User = new (require('./models')).User;
 mongooseAuth.helpExpress(app);
 
->>>>>>> f184fad66262f63a524f6da80f1ec30ec2d1e4e0
-=======
->>>>>>> dev
 // Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -45,8 +36,7 @@ app.get('/', function(req, res){
 	title: 'Home'
   });
 });
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 app.get('/page', function(req, res){
   res.render('page', {
 	  title: 'Page list'
@@ -55,10 +45,7 @@ app.get('/page', function(req, res){
 app.get('/page/create', function(req, res){
   res.render('page/create', {
 	  title: 'create a new page'
-=======
 
-=======
->>>>>>> dev
 app.get('/page', function(req, res){
   res.render('page/index', {
     title: 'NodeJS MongoDB CMS'
@@ -67,12 +54,7 @@ app.get('/page', function(req, res){
 
 app.get('/page/create', function(req, res){
   res.render('page/create', {
-<<<<<<< HEAD
-    title: 'NodeJS MongoDB CMS'
->>>>>>> f184fad66262f63a524f6da80f1ec30ec2d1e4e0
-=======
 	  title: 'create a new page'
->>>>>>> dev
   });
 });
 app.post('/page/create', function(req, res) {
